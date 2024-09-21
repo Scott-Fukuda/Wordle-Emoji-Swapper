@@ -15,11 +15,11 @@ def home():
 def results():
     output = request.form.to_dict()
     user_score = output["user_score"] # this is something called a python dictionary
-    toggleSwitch = output["toggle"]
+    toggleSwitch = request.form.get("toggle")
     green = output["green"]
     yellow = output["yellow"]
     grey = output["grey"]
-    if toggleSwitch:
+    if toggleSwitch == 'on':
         (green, yellow, grey) = random.sample(functions.emoji_list, 3)
     new_user_score = functions.emoji_swap(green, yellow, grey, user_score)
     # new_user_score = user_score
