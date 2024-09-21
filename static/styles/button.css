@@ -1,0 +1,104 @@
+.wordle-button {
+  background-color: rgb(83, 141, 78);
+  color: white;
+  border: none;
+  height: 50px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 40px;
+}
+
+.wordle-button:hover {
+  background-color: rgb(228, 203, 115);
+}
+
+.wordle-button:active {
+  background-color: rgb(236, 229, 194);
+}
+
+.copy-button {
+  font-family: 'Roboto Slab';
+  font-size: 15px;
+  height: 40px;
+  width: 90px;
+  display: block;
+  margin-left: 435px;
+}
+
+.random-button {
+  font-family: 'Roboto Slab';
+  font-size: 15px;
+  height: 40px;
+  width: 90px;
+  display: inline-block;
+  margin-left: 250px;
+  margin-right: 75px;
+}
+
+.results {
+  margin-left: 40px;
+  font-size: 20px;
+  font-family: 'Roboto Slab';
+  background-color: rgb(227,227,225);
+  display: block;
+}
+
+.file_submit {
+  font-family: 'Roboto Slab';
+  font-size: 15px;
+  background-color: rgb(83, 141, 78);
+  color: white;
+  width: 90px;
+  height: 40px;
+  display: inline-block;
+  margin-left: 435px;
+}
+
+.file_submit:hover {
+  background-color: rgb(228, 203, 115);
+}
+
+.file_submit:active {
+  background-color: rgb(236, 229, 194);
+}
+
+.toggle-container {
+           display: flex;
+           align-items: center;
+           margin-left: 275px;
+           font-family: 'Roboto Slab';
+       }
+
+       .toggle {
+           appearance: none;
+           width: 60px;
+           height: 30px;
+           background-color: #ccc;
+           border-radius: 30px;
+           position: relative;
+           outline: none;
+           cursor: pointer;
+           transition: background-color 0.3s ease;
+       }
+
+       .toggle:checked {
+           background-color: #4CAF50; /* Color when checked */
+       }
+
+       .toggle::before {
+           content: '';
+           position: absolute;
+           width: 26px;
+           height: 26px;
+           border-radius: 50%;
+           background-color: white;
+           top: 2px;
+           left: 2px;
+           transition: transform 0.3s ease;
+
+       }
+
+       .toggle:checked::before {
+           transform: translateX(30px); /* Move the knob when checked */
+       }
+}
