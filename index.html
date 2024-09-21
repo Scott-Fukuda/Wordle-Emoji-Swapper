@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Wordle Emoji Swapper</title>
+    <link rel="stylesheet" href="{{ url_for('static',
+      filename='styles/button.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',
+      filename='styles/text.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  </head>
+
+  <body style="background-color:rgb(227,227,225);">
+    <div>
+      <p class = "page-title">
+        <strong>Wordle</strong> Emoji Swapper
+      </p>
+
+      <p class="heading">
+        Swap out your Wordle Results with your favorite emojis!
+      </p>
+    </div>
+    <div>
+      <button class="wordle-button">
+        <a class="wordle-link" href="https://www.nytimes.com/games/wordle/index.html" target="_blank">
+          Play Today's Wordle!
+        </a>
+      </button>
+
+      <button class = "wordle-button">
+          <a class = "wordle-link" href="https://getemoji.com/#smileys" target="blank">
+            List of Emojis
+          </a>
+      </button>
+    </div>
+    <br><br>
+    <div>
+      <form method="POST" action="/results" >
+        <textarea class ="textbox" cols="40" rows="8"
+        placeholder="Paste Wordle results here..."
+          name="user_score" id = "user_score"></textarea>
+        <br>
+
+        <label class="page-description" for = "green">Substitute for 🟩:</label>
+        <input class="input-box" type="text" name="green" id = "green">
+        <br>
+
+        <label class="page-description" for = "yellow">Substitute for 🟨:</label>
+        <input class="input-box" type="text" name="yellow" id = "yellow">
+        <br>
+
+        <label class="page-description" for = "grey">Substitute for ⬛:</label>
+        <input class="input-box" type="text" name="grey" id = "grey">
+
+        <br>
+        <br>
+        <div class="toggle-container">
+          <label for="toggleSwitch">Choose random emojis:</label>
+          <input type="checkbox" id="toggleSwitch" class="toggle" name="toggle">
+        </div>
+        <br><input type="submit" class = "file_submit"></input>
+
+
+          {% if new_user_score %}
+            <p class="heading">Here are your NEW results!</h3>
+            <p id="textToCopy" class="results"
+              style="white-space: pre-line;">{{ new_user_score }}</p>
+            <button class="copy-button" onclick="copyText()">Copy Text</button>
+            <script>
+                async function copyText() {
+                    const text = document.getElementById('textToCopy').innerText;
+
+                    const response = await fetch('/copy', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ text: text })
+                    });
+
+                    const result = await response.json();
+                    alert(result.message);
+                }
+              </script>
+          {% endif %}
+      </form>
+    </div>
+  </body>
+</html>
